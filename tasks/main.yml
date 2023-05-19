@@ -1,0 +1,6 @@
+---
+- name: Build hosts.dnsmasq
+  template:
+    src: templates/etc/hosts.dnsmasq.j2
+    dest: /etc/hosts.dnsmasq
+

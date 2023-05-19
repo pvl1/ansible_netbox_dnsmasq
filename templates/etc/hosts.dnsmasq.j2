@@ -1,0 +1,10 @@
+{% for host in hostvars%}
+{% set interfaces = ( hostvars[host].interfaces  |  rejectattr('ip_addresses', 'equalto','') ) %}
+{% for interface in interfaces %}
+{% set  dns_names =  ( interface['ip_addresses']  |  selectattr('dns_name') ) %}
+{% for ipaddr in dns_names %}
+{{ ipaddr['address'].split('/') | first }} {{ ipaddr['dns_name'] }}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
